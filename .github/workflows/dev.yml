@@ -1,0 +1,20 @@
+name: Dev Deployment
+
+on:
+    push:
+        branches:
+            - developer
+  
+permissions:
+      id-token: write
+      contents: read
+
+jobs:
+    terraform:
+        uses: ./.github/workflows/terraform.yml
+        with:
+            environment: dev
+            aws-assume-role-arn: "arn:aws:iam::195874016928:role/github-actions-jadesonbruno-role"
+            aws-region: us-east-1
+            aws-statefile-bucket: "terraform-backends-195874016928"
+            aws-lock-dynamodb-table: "terraform-locks"
