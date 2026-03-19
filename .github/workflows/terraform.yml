@@ -52,7 +52,7 @@ jobs:
                     -backend-config="dynamodb_table=${{ inputs.aws-lock-dynamodb-table }}"
 
             - name: Terraform Validate
-              run: terraform validate
+              run: cd terraform && terraform validate
 
             - name: Terraform Plan
               id: terraform-plan
