@@ -47,7 +47,8 @@ jobs:
               run: |
                 cd terraform && terraform init \
                     -backend-config="bucket=${{ inputs.aws-statefile-bucket }}" \
-                    -backend-config="key=${{ github.event.repository.name }}" \
+                    -backend-config="key=terraform.tfstate" \
+                    -backend-config="workspace_key_prefix=${{ github.event.repository.name }}/envs" \
                     -backend-config="region=${{ inputs.aws-region }}" \
                     -backend-config="dynamodb_table=${{ inputs.aws-lock-dynamodb-table }}"
 
